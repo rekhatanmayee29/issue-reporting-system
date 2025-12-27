@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complaint Form</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h2>Raise Complaint - {{ category }}</h2>
+
+<form method="POST" action="/submit" enctype="multipart/form-data">
+
+<input type="hidden" name="category" value="{{ category }}">
+
+<label>Date</label>
+<input type="date" name="date" required>
+
+<label>First Name</label>
+<input type="text" name="fname" required>
+
+<label>Last Name</label>
+<input type="text" name="lname" required>
+
+<label>Address</label>
+<input type="text" name="address">
+
+<label>City</label>
+<input type="text" name="city">
+
+<label>District</label>
+<input type="text" name="district">
+
+<label>State</label>
+<select name="state">
+    <option>Andhra Pradesh</option>
+    <option>Telangana</option>
+</select>
+
+<label>Pincode</label>
+<input type="text" name="pincode">
+
+<label>Mobile</label>
+<input type="text" name="mobile">
+
+<label>Email</label>
+<input type="email" name="email" required>
+
+<label>Description</label>
+<textarea name="description"></textarea>
+
+<label>Upload Photo</label>
+<input type="file" name="photo">
+
+<button type="submit">Submit Complaint</button>
+</form>
+
+</body>
+</html>
