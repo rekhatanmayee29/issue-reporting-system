@@ -1,0 +1,60 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Page background – solid blue */
+body {
+    height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    /* Solid blue background */
+    background-color: #003366;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main content */
+.home-content {
+    max-width: 750px;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+/* Title */
+.home-content h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Description */
+.home-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 35px;
+    opacity: 0.95;
+}
+
+/* Button */
+.btn {
+    padding: 14px 36px;
+    background: #ffffff;
+    color: #003366;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+/* Hover */
+.btn:hover {
+    background: #e6e6e6;
+    transform: translateY(-2px);
+}

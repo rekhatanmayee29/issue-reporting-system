@@ -2,32 +2,38 @@ from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 import uuid
 import os
-from flask_mail import Mail, Message
 
 app = Flask(__name__)
 
 # ---------------- CONFIG ----------------
-app.config['UPLOAD_FOLDER'] = 'uploads'
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'artanmayee29@gmail.com'
-app.config['MAIL_PASSWORD'] = 'ttqk qbuc towy nwbm'
-# ----------------------------------------
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "complaints.db")
+UPLOAD_FOLDER = os.path.join(BASE_DIR, "uploads")
 
-mail = Mail(app)
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
-# ---------- DATABASE INIT ----------
+# Ensure uploads folder exists
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+# ---------------- DATABASE SETUP ----------------
+def get_db_connection():
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    return conn
+
+
 def init_db():
-    conn = sqlite3.connect("complaints.db")
+    conn = get_db_connection()
     cursor = conn.cursor()
+
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS complaints (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             ref_id TEXT,
             category TEXT,
-            date TEXT,
-            fname TEXT,
-            lname TEXT,
+            report_date TEXT,
+            first_name TEXT,
+            last_name TEXT,
             address TEXT,
             city TEXT,
             district TEXT,
@@ -39,83 +45,91 @@ def init_db():
             photo TEXT
         )
     """)
+
     conn.commit()
     conn.close()
 
+
 init_db()
 
-# ---------- ROUTES ----------
+# ---------------- ROUTES ----------------
+
 @app.route("/")
 def home():
     return render_template("home.html")
 
+
 @app.route("/category")
 def category():
     return render_template("category.html")
+
 
 @app.route("/complaint")
 def complaint():
     category = request.args.get("category")
     return render_template("complaint_form.html", category=category)
 
+
 @app.route("/submit", methods=["POST"])
 def submit():
-    ref_id = "SC-" + str(uuid.uuid4())[:6]
+    # Generate reference ID
+    ref_id = "SC-" + uuid.uuid4().hex[:8].upper()
 
-    photo = request.files['photo']
-    photo_name = ""
-    if photo:
-        photo_name = ref_id + "_" + photo.filename
-        photo.save(os.path.join(app.config['UPLOAD_FOLDER'], photo_name))
+    # Safely get form values (NO KeyError)
+    report_date = request.form.get("date")
+    first_name = request.form.get("fname")
+    last_name = request.form.get("lname")
+    address = request.form.get("address")
+    city = request.form.get("city")
+    district = request.form.get("district")
+    state = request.form.get("state")
+    pincode = request.form.get("pincode")
+    mobile = request.form.get("mobile")
+    email = request.form.get("email")
+    description = request.form.get("description")
+    category = request.form.get("category")
 
-    data = (
-        ref_id,
-        request.form['category'],
-        request.form['date'],
-        request.form['fname'],
-        request.form['lname'],
-        request.form['address'],
-        request.form['city'],
-        request.form['district'],
-        request.form['state'],
-        request.form['pincode'],
-        request.form['mobile'],
-        request.form['email'],
-        request.form['description'],
-        photo_name
-    )
+    # Handle file upload
+    photo_file = request.files.get("photo")
+    photo_filename = None
 
-    conn = sqlite3.connect("complaints.db")
+    if photo_file and photo_file.filename != "":
+        photo_filename = f"{ref_id}_{photo_file.filename}"
+        photo_file.save(os.path.join(app.config["UPLOAD_FOLDER"], photo_filename))
+
+    # Insert into database (14 columns, 14 values)
+    conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO complaints VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", data)
+
+    cursor.execute("""
+        INSERT INTO complaints (
+            ref_id, category, report_date,
+            first_name, last_name, address,
+            city, district, state,
+            pincode, mobile, email,
+            description, photo
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (
+        ref_id, category, report_date,
+        first_name, last_name, address,
+        city, district, state,
+        pincode, mobile, email,
+        description, photo_filename
+    ))
+
     conn.commit()
     conn.close()
 
-    # Email
-    msg = Message(
-        subject="Complaint Registered Successfully",
-        sender=app.config['MAIL_USERNAME'],
-        recipients=[request.form['email']],
-        body=f"""
-Hello {request.form['fname']},
-
-Your complaint has been successfully registered.
-
-Reference ID: {ref_id}
-
-Thank you for helping us improve the city.
-
-Smart City Lab
-"""
-    )
-    mail.send(msg)
-
     return redirect(url_for("success", ref_id=ref_id))
+
 
 @app.route("/success")
 def success():
     ref_id = request.args.get("ref_id")
     return render_template("success.html", ref_id=ref_id)
 
+
+# ---------------- RUN ----------------
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Success</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <meta charset="UTF-8">
+    <title>Complaint Submitted</title>
+    <link rel="stylesheet" href="/static/success.css">
 </head>
 <body>
 
-<div class="center">
-    <h2>Complaint Raised Successfully ✅</h2>
-    <p>Your Reference ID:</p>
+<div class="success-box">
+    <h2>✅ Complaint Raised Successfully</h2>
+    <p>Your Reference ID</p>
     <h3>{{ ref_id }}</h3>
-    <p>A confirmation email has been sent.</p>
+    <p>
+        A confirmation email has been sent to your registered email address.
+    </p>
 </div>
 
+<script src="/static/success.js"></script>
 </body>
 </html>

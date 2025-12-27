@@ -1,23 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Select Category</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <meta charset="UTF-8">
+    <title>Select Issue Category</title>
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="/static/category.css">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
 <h2>Select Issue Category</h2>
 
-<div class="grid">
-    <div class="card" onclick="selectCategory('Transportation')">Transportation</div>
-    <div class="card" onclick="selectCategory('Waste Management')">Waste Management</div>
-    <div class="card" onclick="selectCategory('Water')">Water</div>
-    <div class="card" onclick="selectCategory('Traffic')">Traffic</div>
-    <div class="card" onclick="selectCategory('Air & Noise')">Air & Noise</div>
-    <div class="card" onclick="selectCategory('Animals')">Animals</div>
-    <div class="card" onclick="selectCategory('Other')">Other</div>
+<div class="category-grid">
+
+    <div class="card" onclick="selectCategory('Transportation')">
+        <i class="fas fa-bus"></i>
+        <span>Transportation</span>
+    </div>
+
+    <div class="card" onclick="selectCategory('Waste Management')">
+        <i class="fas fa-trash"></i>
+        <span>Waste Management</span>
+    </div>
+
+    <div class="card" onclick="selectCategory('Water')">
+        <i class="fas fa-water"></i>
+        <span>Water</span>
+    </div>
+
+    <div class="card" onclick="selectCategory('Traffic')">
+        <i class="fas fa-traffic-light"></i>
+        <span>Traffic</span>
+    </div>
+
+    <div class="card" onclick="selectCategory('Air & Noise')">
+        <i class="fas fa-smog"></i>
+        <span>Air & Noise</span>
+    </div>
+
+    <div class="card" onclick="selectCategory('Animals')">
+        <i class="fas fa-dog"></i>
+        <span>Animals</span>
+    </div>
+
+    <div class="card" onclick="selectCategory('Other')">
+        <i class="fas fa-ellipsis-h"></i>
+        <span>Other</span>
+    </div>
+
 </div>
 
-<script src="/static/script.js"></script>
+<script src="/static/category.js"></script>
 </body>
 </html>

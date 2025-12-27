@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background: #e8f5e9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.success-box {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.success-box h2 {
+    color: #2e7d32;
+}
+
+.success-box h3 {
+    color: #1b5e20;
+    margin: 10px 0;
+}
