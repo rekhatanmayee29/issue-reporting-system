@@ -9,7 +9,12 @@
 
 <div class="form-wrapper">
     <h2>Raise a Complaint</h2>
-    <p class="subtitle">Category: <strong>{{ category }}</strong></p>
+    <h3>{{ category }} – {{ subcategory }}</h3>
+    <input type="hidden" name="category" value="{{ category }}">
+    <input type="hidden" name="subcategory" value="{{ request.args.get('subcategory') }}">
+
+
+
 
     <form method="POST" action="/submit" enctype="multipart/form-data">
 

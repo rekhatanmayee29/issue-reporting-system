@@ -3,53 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <title>Select Issue Category</title>
-
-    <!-- Page CSS -->
     <link rel="stylesheet" href="/static/category.css">
-
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
-<h2>Select Issue Category</h2>
+<h2>Report an Issue</h2>
 
-<div class="category-grid">
+<div class="category-container">
 
-    <div class="card" onclick="selectCategory('Transportation')">
-        <i class="fas fa-bus"></i>
-        <span>Transportation</span>
+    <!-- ROAD & TRANSPORT -->
+    <div class="category">
+        <div class="category-header" onclick="toggleSub('road')">
+            🛣️ Road & Transportation Infrastructure
+        </div>
+        <div class="sub-list" id="road">
+            <div onclick="openForm('Road & Transportation Infrastructure','Road Surface Degradation')">Road Surface Degradation</div>
+            <div onclick="openForm('Road & Transportation Infrastructure','Potholes & Pavement Failure')">Potholes & Pavement Failure</div>
+            <div onclick="openForm('Road & Transportation Infrastructure','Damaged Road Markings')">Damaged Road Markings</div>
+            <div onclick="openForm('Road & Transportation Infrastructure','Footpath / Sidewalk Obstruction')">Footpath / Sidewalk Obstruction</div>
+            <div onclick="openForm('Road & Transportation Infrastructure','Flyover & Bridge Maintenance')">Flyover & Bridge Maintenance</div>
+            <div onclick="openForm('Road & Transportation Infrastructure','Traffic Signal Malfunction')">Traffic Signal Malfunction</div>
+            <div onclick="openForm('Road & Transportation Infrastructure','Public Transport Infrastructure')">Public Transport Infrastructure</div>
+            <div onclick="openForm('Road & Transportation Infrastructure','Bus Stop / Shelter Damage')">Bus Stop / Shelter Damage</div>
+            <div onclick="openForm('Road & Transportation Infrastructure','Street Name Board Damage')">Street Name Board Damage</div>
+            <div onclick="openForm('Road & Transportation Infrastructure','Unauthorized Road Excavation')">Unauthorized Road Excavation</div>
+            <div onclick="openForm('Road & Transportation Infrastructure','Other Road & Transport Issues')">Other Road & Transport Issues</div>
+        </div>
     </div>
 
-    <div class="card" onclick="selectCategory('Waste Management')">
-        <i class="fas fa-trash"></i>
-        <span>Waste Management</span>
+    <!-- WASTE -->
+    <div class="category">
+        <div class="category-header" onclick="toggleSub('waste')">
+            🗑️ Waste Management & Sanitation
+        </div>
+        <div class="sub-list" id="waste">
+            <div onclick="openForm('Waste Management & Sanitation','Garbage Overflow / Accumulation')">Garbage Overflow / Accumulation</div>
+            <div onclick="openForm('Waste Management & Sanitation','Irregular Waste Collection')">Irregular Waste Collection</div>
+            <div onclick="openForm('Waste Management & Sanitation','Open Dumping of Waste')">Open Dumping of Waste</div>
+            <div onclick="openForm('Waste Management & Sanitation','Segregation & Recycling Issues')">Segregation & Recycling Issues</div>
+            <div onclick="openForm('Waste Management & Sanitation','Littering in Public Places')">Littering in Public Places</div>
+            <div onclick="openForm('Waste Management & Sanitation','Dead Animal Disposal')">Dead Animal Disposal</div>
+            <div onclick="openForm('Waste Management & Sanitation','Public Bin Damage / Missing')">Public Bin Damage / Missing</div>
+            <div onclick="openForm('Waste Management & Sanitation','Sanitation Worker Issues')">Sanitation Worker Issues</div>
+            <div onclick="openForm('Waste Management & Sanitation','Other Waste Management Issues')">Other Waste Management Issues</div>
+        </div>
     </div>
 
-    <div class="card" onclick="selectCategory('Water')">
-        <i class="fas fa-water"></i>
-        <span>Water</span>
+    <!-- WATER -->
+    <div class="category">
+        <div class="category-header" onclick="toggleSub('water')">
+            💧 Water Supply & Drainage
+        </div>
+        <div class="sub-list" id="water">
+            <div onclick="openForm('Water Supply & Drainage','Water Supply Disruption')">Water Supply Disruption</div>
+            <div onclick="openForm('Water Supply & Drainage','Low Water Pressure')">Low Water Pressure</div>
+            <div onclick="openForm('Water Supply & Drainage','Water Leakage from Pipelines')">Water Leakage from Pipelines</div>
+            <div onclick="openForm('Water Supply & Drainage','Contaminated / Unsafe Water')">Contaminated / Unsafe Water</div>
+            <div onclick="openForm('Water Supply & Drainage','Open Drainage')">Open Drainage</div>
+            <div onclick="openForm('Water Supply & Drainage','Sewer Overflow')">Sewer Overflow</div>
+            <div onclick="openForm('Water Supply & Drainage','Blocked Storm Water Drains')">Blocked Storm Water Drains</div>
+            <div onclick="openForm('Water Supply & Drainage','Flooding / Waterlogging')">Flooding / Waterlogging</div>
+            <div onclick="openForm('Water Supply & Drainage','Public Tap Damage')">Public Tap Damage</div>
+            <div onclick="openForm('Water Supply & Drainage','Other Water Supply Issues')">Other Water Supply Issues</div>
+        </div>
     </div>
 
-    <div class="card" onclick="selectCategory('Traffic')">
-        <i class="fas fa-traffic-light"></i>
-        <span>Traffic</span>
+    <!-- ENVIRONMENT -->
+    <div class="category">
+        <div class="category-header" onclick="toggleSub('env')">
+            🌫️ Environmental Quality & Urban Ecology
+        </div>
+        <div class="sub-list" id="env">
+            <div onclick="openForm('Environmental Quality','Air Pollution Complaint')">Air Pollution Complaint</div>
+            <div onclick="openForm('Environmental Quality','Noise Pollution')">Noise Pollution</div>
+            <div onclick="openForm('Environmental Quality','Industrial Emissions')">Industrial Emissions</div>
+            <div onclick="openForm('Environmental Quality','Dust Pollution')">Dust Pollution</div>
+            <div onclick="openForm('Environmental Quality','Open Burning of Waste')">Open Burning of Waste</div>
+            <div onclick="openForm('Environmental Quality','Tree Damage / Illegal Cutting')">Tree Damage / Illegal Cutting</div>
+            <div onclick="openForm('Environmental Quality','Green Space Maintenance')">Green Space Maintenance</div>
+            <div onclick="openForm('Environmental Quality','Encroachment on Open Lands')">Encroachment on Open Lands</div>
+            <div onclick="openForm('Environmental Quality','Other Environmental Issues')">Other Environmental Issues</div>
+        </div>
     </div>
 
-    <div class="card" onclick="selectCategory('Air & Noise')">
-        <i class="fas fa-smog"></i>
-        <span>Air & Noise</span>
+    <!-- ANIMAL & SAFETY -->
+    <div class="category">
+        <div class="category-header" onclick="toggleSub('animal')">
+            🐕 Animal & Public Safety Issues
+        </div>
+        <div class="sub-list" id="animal">
+            <div onclick="openForm('Animal & Public Safety Issues','Stray Animal Menace')">Stray Animal Menace</div>
+            <div onclick="openForm('Animal & Public Safety Issues','Injured Animal Reporting')">Injured Animal Reporting</div>
+            <div onclick="openForm('Animal & Public Safety Issues','Aggressive Animal Complaints')">Aggressive Animal Complaints</div>
+            <div onclick="openForm('Animal & Public Safety Issues','Unsafe Public Areas')">Unsafe Public Areas</div>
+            <div onclick="openForm('Animal & Public Safety Issues','Street Light Absence Causing Safety Risk')">Street Light Absence Causing Safety Risk</div>
+            <div onclick="openForm('Animal & Public Safety Issues','Other Public Safety Issues')">Other Public Safety Issues</div>
+        </div>
     </div>
 
-    <div class="card" onclick="selectCategory('Animals')">
-        <i class="fas fa-dog"></i>
-        <span>Animals</span>
+    <!-- TRAFFIC -->
+    <div class="category">
+        <div class="category-header" onclick="toggleSub('traffic')">
+            🚦 Traffic & Crowd Management
+        </div>
+        <div class="sub-list" id="traffic">
+            <div onclick="openForm('Traffic & Crowd Management','Traffic Congestion')">Traffic Congestion</div>
+            <div onclick="openForm('Traffic & Crowd Management','Illegal Parking')">Illegal Parking</div>
+            <div onclick="openForm('Traffic & Crowd Management','Pedestrian Safety Concerns')">Pedestrian Safety Concerns</div>
+            <div onclick="openForm('Traffic & Crowd Management','Crowd Control Issues')">Crowd Control Issues</div>
+            <div onclick="openForm('Traffic & Crowd Management','Accident-Prone Zones')">Accident-Prone Zones</div>
+            <div onclick="openForm('Traffic & Crowd Management','Other Traffic Issues')">Other Traffic Issues</div>
+        </div>
     </div>
 
-    <div class="card" onclick="selectCategory('Other')">
-        <i class="fas fa-ellipsis-h"></i>
-        <span>Other</span>
+    <!-- UTILITIES -->
+    <div class="category">
+        <div class="category-header" onclick="toggleSub('utilities')">
+            🏥 Public Utilities & Civic Amenities
+        </div>
+        <div class="sub-list" id="utilities">
+            <div onclick="openForm('Public Utilities & Civic Amenities','Street Light Not Working')">Street Light Not Working</div>
+            <div onclick="openForm('Public Utilities & Civic Amenities','Electricity Issues (Public Areas)')">Electricity Issues (Public Areas)</div>
+            <div onclick="openForm('Public Utilities & Civic Amenities','Public Toilet Maintenance')">Public Toilet Maintenance</div>
+            <div onclick="openForm('Public Utilities & Civic Amenities','Government Building Maintenance')">Government Building Maintenance</div>
+            <div onclick="openForm('Public Utilities & Civic Amenities','Other Civic Amenities Issues')">Other Civic Amenities Issues</div>
+        </div>
+    </div>
+
+    <!-- OTHERS -->
+    <div class="category">
+        <div class="category-header" onclick="openForm('Other / General Complaints','Not Listed Above')">
+            🧩 Other / General Complaints
+        </div>
     </div>
 
 </div>

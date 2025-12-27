@@ -1,7 +1,7 @@
 body {
     margin: 0;
     height: 100vh;
-    background: #e8f5e9;
+    background: #003366;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,10 +17,10 @@ body {
 }
 
 .success-box h2 {
-    color: #2e7d32;
+    color: #003366;
 }
 
 .success-box h3 {
-    color: #1b5e20;
+    color: #003366;
     margin: 10px 0;
 }
